@@ -1,5 +1,6 @@
 Changes in <next version>:
  * Add option to ignore white space following delimiters when importing CSVs
+ * Draw line widget with flat line caps, to avoid over-extending line
 
 Changes in 1.21.1
  * Add swap option on keys, swapping symbol and text

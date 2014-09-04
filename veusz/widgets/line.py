@@ -169,7 +169,7 @@ class Line(plotters.FreePlotter):
         return out
 
     def draw(self, posn, phelper, outerbounds = None):
-        """Plot the key on a plotter."""
+        """Plot the line widget on a plotter."""
 
         s = self.settings
         d = self.document
@@ -201,7 +201,9 @@ class Line(plotters.FreePlotter):
 
             # drawing settings for line
             if not s.Line.hide:
-                painter.setPen( s.get('Line').makeQPen(painter) )
+                pen = s.get('Line').makeQPen(painter)
+                pen.setCapStyle(qt4.Qt.FlatCap)
+                painter.setPen(pen)
             else:
                 painter.setPen( qt4.QPen(qt4.Qt.NoPen) )
 
