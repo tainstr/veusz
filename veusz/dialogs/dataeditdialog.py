@@ -80,15 +80,19 @@ class AttrsTableModel(qt4.QAbstractTableModel):
 
     def data(self, index, role):
         """Return data for index."""
+        if not role in (qt4.Qt.DisplayRole, qt4.Qt.EditRole):
+            return None
         # get dataset
         d = self._data(index)
-        if d is not None and role in (
-                qt4.Qt.DisplayRole, qt4.Qt.EditRole):
+        if d is not None:
             # convert data to data
-            if not (isinstance(d, float) or isinstance(d, int) or isinstance(d, basestring)):
+            if isinstance(d,float):
+                d=float(d)
+            elif isinstance(d,int):
+                d=int(d)
+            elif not isinstance(d, basestring):
                 d = repr(d)
             return d
-
         # empty entry
         return None
 
@@ -109,7 +113,6 @@ class AttrsTableModel(qt4.QAbstractTableModel):
         d = self._data(index)
         editable = isinstance(d, basestring) or isinstance(
             d, float) or isinstance(d, int)
-        print self.dsname, ds.editable, editable, d
         if ds is not None and editable:
             f |= qt4.Qt.ItemIsEditable
         return f
