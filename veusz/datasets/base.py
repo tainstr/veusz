@@ -100,12 +100,12 @@ class DatasetConcreteBase(DatasetBase):
     def saveToFile(self, fileobj, name, mode='text', hdfgroup=None):
         """Save dataset to file."""
         self.saveDataRelationToText(fileobj, name)
-        self.saveDataAttr(fileobj, name)
         if self.linked is None:
             if mode == 'text':
                 self.saveDataDumpToText(fileobj, name)
             elif mode == 'hdf5':
                 self.saveDataDumpToHDF5(hdfgroup, name)
+        self.saveDataAttr(fileobj, name)
 
     def saveDataRelationToText(self, fileobj, name):
         """Save a dataset relation to a text stream fileobj.
