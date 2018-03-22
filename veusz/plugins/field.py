@@ -148,6 +148,8 @@ class _WidgetCombo(qt4.QComboBox):
         # set tool tip for each entry which is the path
         for i, path in enumerate(self.paths):
             self.setItemData(i, path, qt4.Qt.ToolTipRole)
+            if path==self.default:
+                self.setCurrentIndex(i)
 
     def getWidgetPath(self):
         """Get path of selected widget."""
