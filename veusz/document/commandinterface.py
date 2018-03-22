@@ -656,6 +656,8 @@ class CommandInterface(qt4.QObject):
         self.vprint(_('setting attr'), dsname, attrname, val)
         ds = self.document.data.get(dsname, False)
         if ds is False:
+            print(_('Dataset not found') + dsname)
+            return
             raise RuntimeError(_('Dataset not found') + dsname)
         ds.attr[attrname] = val
         op = operations.OperationDatasetSet(dsname, ds)
