@@ -42,6 +42,7 @@ from .. import plugins
 
 from . import consolewindow
 from . import plotwindow
+from plotwindow import PlotWindow
 from . import treeeditwindow
 from .datanavigator import DataNavigatorWindow
 
@@ -132,7 +133,7 @@ class MainWindow(qt4.QMainWindow):
         self._defineMenus()
 
         # make plot window
-        self.plot = plotwindow.PlotWindow(self.document, self,
+        self.plot = PlotWindow(self.document, self,
                                           menu = self.menus['view'])
         self.setCentralWidget(self.plot)
         self.plot.showToolbar()
