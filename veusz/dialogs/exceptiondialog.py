@@ -180,7 +180,7 @@ class ExceptionDialog(VeuszDialog):
     def __init__(self, exception, parent):
 
         VeuszDialog.__init__(self, parent, 'exceptionlist.ui')
-
+        traceback.print_exception(*exception)
         # get text for traceback and locals
         self.fmtexcept = ''.join(traceback.format_exception(*exception))
         self.backtrace = self.fmtexcept + formatLocals(exception)
