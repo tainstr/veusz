@@ -737,8 +737,9 @@ class DataEditDialog(VeuszDialog):
             a.setEnabled(model is not None)
 
         self.datatableview.setModel(model)
-        attrsmodel = AttrsTableModel(self, self.document, names[0])
-        self.attrstableview.setModel(attrsmodel)
+        if len(names) >= 1:
+            attrsmodel = AttrsTableModel(self, self.document, names[0])
+            self.attrstableview.setModel(attrsmodel)
         self.setUnlinkState()
 
     def setUnlinkState(self):
