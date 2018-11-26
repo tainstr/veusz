@@ -198,15 +198,16 @@ class LinkedFileBase(object):
             errors = dict([(name, 1) for name, ds in citems(document.data)
                            if ds.linked is self])
             return ([], errors)
-
+        
         # delete datasets which are linked and imported here
         tags = self._deleteLinkedDatasets(document)
+        
+        
         # move datasets into document
         read = self._moveReadDatasets(tempdoc, document, tags)
-
+        
         # return errors (if any)
         errors = op.outinvalids
-
         return (read, errors)
 
 class OperationDataImportBase(object):

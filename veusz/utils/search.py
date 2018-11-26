@@ -14,8 +14,7 @@ def iter_widgets(base, typename, direction=0):
                 yield obj
 
         for obj in base.children:
-            found = searchFirstOccurrence(obj, typename, direction=1)
-            if found is not None:
+            for found in iter_widgets(obj, typename, direction=1):
                 yield found
         # Continue upwards
         if direction == 0:
@@ -23,8 +22,7 @@ def iter_widgets(base, typename, direction=0):
     # Search up in the object tree
     # Note: exclude siblings - just look for parents
     if direction < 0:
-        found = searchFirstOccurrence(base.parent, typename, direction=-1)
-        if found is not None:
+        for found in iter_widgets(base.parent, typename, direction=-1):
             yield found
     # Nothing found
     yield None
