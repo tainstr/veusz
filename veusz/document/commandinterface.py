@@ -97,6 +97,7 @@ class CommandInterface(qt4.QObject):
         'TagDatasets',
         'To',
         'WidgetType',
+        'ClearHistory',
         ]
 
     # commands which can modify disk, etc
@@ -168,6 +169,9 @@ class CommandInterface(qt4.QObject):
             print(_("Added a widget of type '%s' (%s)") % (type, w.userdescription))
 
         return w.name
+    
+    def ClearHistory(self):
+        self.document.clearHistory()
 
     def AddCustom(self, ctype, name, val, mode='appendalways'):
         """Add a custom definition for evaluation of expressions.
