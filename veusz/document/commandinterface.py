@@ -98,6 +98,8 @@ class CommandInterface(qt4.QObject):
         'To',
         'WidgetType',
         'ClearHistory',
+        'Cache',
+        'Retrieve',
         ]
 
     # commands which can modify disk, etc
@@ -172,6 +174,17 @@ class CommandInterface(qt4.QObject):
     
     def ClearHistory(self):
         self.document.clearHistory()
+        
+    def Cache(self, dataset_name):
+        self.document.add_cache(self.document.data[dataset_name], dataset_name, 
+                                overwrite=True)
+        self.document.setModified(True)
+    
+    def Retrieve(self, dataset_name):
+        self.document.data.pop(dataset_name, False)
+        ds = self.document.get_cache(dataset_name, add_to_doc=True)
+        print('Retrieve', dataset_name, len(ds))
+        self.document.setModified(True)
 
     def AddCustom(self, ctype, name, val, mode='appendalways'):
         """Add a custom definition for evaluation of expressions.
